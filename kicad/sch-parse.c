@@ -737,7 +737,7 @@ bool sch_parse(struct sch_ctx *ctx, struct file *file, const struct lib *lib,
 	ctx->curr_sheet->path = stralloc("/");
 	ctx->lib = lib;
 	ctx->prev = prev;
-    printf("%s():  %s\n",__FUNCTION__, file->name );
+    //printf("%s():  %s\n",__FUNCTION__, file->name );
 	return file_read(file, parse_line, ctx);
 }
 

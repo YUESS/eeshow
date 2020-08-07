@@ -428,7 +428,7 @@ bool lib_parse_search(struct lib *lib, const char *name,
 	if (!lib_find_file(&file, name, fn, related))
 		return 0;
 
-    printf("%s(): find %s\n", __FUNCTION__, name);
+    //printf("%s(): find %s\n", __FUNCTION__, name);
 	res = lib_parse_file(lib, &file);
 	file_close(&file);
 	return res;
