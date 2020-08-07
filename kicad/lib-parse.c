@@ -100,6 +100,7 @@ static bool parse_def(struct lib *lib, const char *line)
 		free(s);
 		s = tmp;
 	}
+    //printf("%s(): name=%s\n", __FUNCTION__, s);
 	lib->curr_comp->name = s;
 	lib->curr_comp->aliases = NULL;
 	lib->curr_comp->units = units;
@@ -234,6 +235,7 @@ static bool lib_parse_line(const struct file *file,
 	unsigned zero, bold;
 	char vis;
 
+    //printf("%s(): state=%d\n", __FUNCTION__, lib->state);
 	switch (lib->state) {
 	case lib_skip:
 		if (parse_def(lib, line)) {
@@ -425,6 +427,8 @@ bool lib_parse_search(struct lib *lib, const char *name,
 
 	if (!lib_find_file(&file, name, fn, related))
 		return 0;
+
+    printf("%s(): find %s\n", __FUNCTION__, name);
 	res = lib_parse_file(lib, &file);
 	file_close(&file);
 	return res;

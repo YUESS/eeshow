@@ -716,6 +716,20 @@ const struct comp *lib_find(const struct lib *lib, const char *name)
 	const struct comp *comp;
 	const struct comp_alias *alias;
 
+    //printf("%s(): find %s\n", __FUNCTION__, name);
+
+    //change by yue.ss
+    char namecp[100];
+    char *ret;
+
+    strcpy(namecp, name);
+    ret = strchr(namecp, ':');
+    if(ret != NULL) {
+        *ret = '_';
+    }
+
+
+#if 0
 	for (comp = lib->comps; comp; comp = comp->next) {
 		if (!strcmp(comp->name, name))
 			return comp;
@@ -724,6 +738,17 @@ const struct comp *lib_find(const struct lib *lib, const char *name)
 				return comp;
 	}
 	error("\"%s\" not found", name);
+#else
+	for (comp = lib->comps; comp; comp = comp->next) {
+		if (!strcmp(comp->name, namecp))
+			return comp;
+		for (alias = comp->aliases; alias; alias = alias->next)
+			if (!strcmp(alias->name, namecp))
+				return comp;
+	}
+	error("\"%s\" not found", namecp);
+
+#endif
 	return NULL;
 }
 

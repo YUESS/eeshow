@@ -460,6 +460,7 @@ static bool parse_line(const struct file *file, void *user, const char *line)
 	char *s, *italic;
 	int bold;
 
+    //printf("%s(): state=%d\n", __FUNCTION__, ctx->state);
 	switch (ctx->state) {
 	case sch_basic:
 		if (sscanf(line, "$Comp%n", &n) == 0 && n) {
@@ -736,6 +737,7 @@ bool sch_parse(struct sch_ctx *ctx, struct file *file, const struct lib *lib,
 	ctx->curr_sheet->path = stralloc("/");
 	ctx->lib = lib;
 	ctx->prev = prev;
+    printf("%s():  %s\n",__FUNCTION__, file->name );
 	return file_read(file, parse_line, ctx);
 }
 

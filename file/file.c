@@ -300,6 +300,7 @@ bool file_read(struct file *file,
 		if (nl)
 			*nl = 0;
 		file->lineno++;
+        //printf("%s(): %d  %s\n",__FUNCTION__, file->lineno, getline_buf);
 		if (!parse(file, user, getline_buf))
 			return 0;
 	}
